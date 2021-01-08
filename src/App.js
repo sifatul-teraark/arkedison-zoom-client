@@ -24,7 +24,7 @@ function App() {
   var meetingNumber = parsed.meetingNumber;
   var role = 0
   var leaveUrl = 'http://localhost:3000'
-  var userName = 'arkEdison-test'
+  var userName = parsed.userName || 'arkEdison-test' 
   var userEmail = ''
   var passWord = parsed.password;
 
