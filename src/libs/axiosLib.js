@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const BACKEND_URL ="https://backend.arkedison.io";
 
 async function GET(url) {
     console.log('api request: ', url)
