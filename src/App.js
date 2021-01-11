@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from 'react';
+
 import { ZoomMtg } from '@zoomus/websdk';
 import "./zoom.css";
 import AxiosLib from "./libs/axiosLib";
@@ -23,18 +25,22 @@ function App() {
   var apiKey = '9R6mzeU3TJy4E2gl2WcDaA'
   var meetingNumber = parsed.meetingNumber;
   var role = 0
-  var leaveUrl = 'http://localhost:3000'
+  var leaveUrl = 'http://localhost:3001'
   var userName = parsed.userName || 'arkEdison-test' 
   var userEmail = ''
   var passWord = parsed.password;
 
-  if(!meetingNumber || !passWord) return alert("params missing");
 
-//   https://zoom.us/j/96605380998?pwd=M01iK21uL2ZUeUVjNWFFZFU2eXkxUT09
+  useEffect(() => {
+    if(!meetingNumber || !passWord) return ;
 
+    getSignature();
+  },[meetingNumber,passWord]);
+
+ 
 
   async function getSignature(e) {
-    e.preventDefault();
+    if(e) e.preventDefault();
     
     const result =  await AxiosLib.POST('/zoom/signature',{
         meetingNumber: meetingNumber,
@@ -97,13 +103,14 @@ function App() {
       }
     })
   }
-
+ 
   return (
     <div className="zoomApp">
       <main>
-        <h1>Zoom WebSDK Sample React</h1>
+        <h1>ArkEdison Zoom Classroom</h1>
+        {(!meetingNumber || !passWord) && <h3> Please check your live class room id and password</h3>}
 
-        <button onClick={e=>getSignature(e)} >Join Meeting</button>
+        <button onClick={e=>getSignature(e)} >Join Live Class</button>
       </main>
     </div>
   );

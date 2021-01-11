@@ -26,6 +26,7 @@ main {
   }
   .zoomApp{
       margin-top: 100px;;
+      /* background-image: url('./images/logo-white.svg'); */
   }
   #zmmtg-root{
     display:none;
